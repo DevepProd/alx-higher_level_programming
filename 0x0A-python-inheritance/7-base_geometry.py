@@ -1,24 +1,39 @@
 #!/usr/bin/python3
-"""Defines a base geometry class BaseGeometry."""
+"""
+This is module 7-base_geometry
+This module contains:
+-one class
+-two functions
+Access test for this class in /tests subfolder - to run:
+`python3 -m doctest ./tests/7-base_geometry.txt`
+"""
 
 
 class BaseGeometry:
-    """Reprsent base geometry."""
+    """
+    base geometry class
+    Public instance method:
+    `def area(self)`
+    `def integer_validator(self, name, value)`
+    Args:
+    name
+    value
+    Returns:
+    area of shape
+    """
 
     def area(self):
-        """Not yet implemented."""
+        """
+        public method to determine area
+        Raises:
+        Exception with the message
+        """
         raise Exception("area() is not implemented")
 
     def integer_validator(self, name, value):
-        """Validate a parameter as an integer.
-        Args:
-            name (str): The name of the parameter.
-            value (int): The parameter to validate.
-        Raises:
-            TypeError: If value is not an integer.
-            ValueError: If value is <= 0.
+        """validates value from int type
         """
-        if type(value) != int:
+        if type(value) is not int:
             raise TypeError("{} must be an integer".format(name))
         if value <= 0:
             raise ValueError("{} must be greater than 0".format(name))
