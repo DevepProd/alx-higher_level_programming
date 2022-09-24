@@ -1,8 +1,15 @@
 #!/usr/bin/python3
-""" Show type and content using requests """
+"""Check status"""
 import requests
 
-if __name__ == "__main__":
-    r = requests.get('https://intranet.hbtn.io/status')
+
+def status():
+    """status"""
+    result = requests.get("https://intranet.hbtn.io/status")
+
     print("Body response:")
-    print("\t- type: {}\n\t- content: {}".format(type(r.text), r.text))
+    print("\t- type: {}".format(type(result.text)))
+    print("\t- content: {}".format(result.text))
+
+if __name__ == "__main__":
+    status()
