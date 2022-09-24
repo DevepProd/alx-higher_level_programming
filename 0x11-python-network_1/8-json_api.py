@@ -1,23 +1,19 @@
 #!/usr/bin/python3
+"""Takes in a letter and sends a POST request to
+http://0.0.0.0:5000/search_user with the letter as a parameter"""
 
-import requests
-import sys
 
 if __name__ == "__main__":
-    if len(sys.argv) == 2:
-        payload = {'q': sys.argv[1]}
-        r = requests.post("http://0.0.0.0:5000/search_user", data=payload)
-        # if json is not empty and json correct:
-            # print("[{}] <{}>".format(id, name))
-        # elif json incorrect:
-            # print("Not a valid JSON")
-        # else:
-            # print("No result")
-    else:
-        print("No result")
-    # data = urllib.parse.urlencode({"email": sys.argv[2]})
-    # data = data.encode('ascii')
-    # url = sys.argv[1]
-    # with urllib.request.urlopen(url, data) as response:
-    #     print(response)
+    import requests
+    import sys
 
+    q = sys.argv[1] if len(sys.argv) > 1 else ""
+    r = requests.post('http://0.0.0.0:5000/search_user', data={'q': q})
+    try:
+        dic = r.json()
+        if dic == {}:
+            print('No result')
+        else:
+            print("[{}] {}".format(dic.get('id'), dic.get('name')))
+    except ValueError:
+        print('Not a valid JSON')
